@@ -30,7 +30,7 @@ upper = \relative c' {
     % B
 
     \appoggiatura dis8 <e, g c e>4\mf r r2
-    <d e g d'>4 <c e g c> <e g bis e> r8 <d d'>
+    <d e g d'>4 <c e g c> <e g bes e> r8 <d d'>
     <c f a c>4 r <c' f a c> r8 <a c f a>~
     <a c f a>4 <c f a c> a'2\trill
     g4 r r r8 <e, g c e>~
