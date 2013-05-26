@@ -4,7 +4,9 @@
 
 \include "score.ly"
 
+#(set-global-staff-size 17)
 \score {
     \content
-    \layout {}
+    \layout {
+    }
 }
