@@ -16,6 +16,7 @@ first = \relative c' {
     d2. a'8 gis
     a4 a8 f g4 g8 a
     f4 d~ d a'
+    g a bes c
     <g a>2. a8 a
     g4 a g g8(a)
     f4 d~d d8 e
@@ -44,6 +45,7 @@ second = \relative c' {
     \bar "||"
     f4 f8 d b4 cis
     c2 bes
+    <c e>4 <c f> <d f>2
     d2 cis4. r8
     <c e>4 <c f> <b d> cis
     c2 bes
@@ -77,6 +79,7 @@ lower = \relative c {
     d2 d,4 r
     d'2 a
     d g,
+    d' g,
     a1
     d2 g,4 a
     d2 g,
