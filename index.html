@@ -162,7 +162,6 @@
                     show_general();
                 }
 
-                request.open('GET', 'list.json');
                 request.onreadystatechange = function() {
                     try {
                         if (request.readyState == 4 && request.status = 200) {
@@ -198,8 +197,10 @@
                             console.log(request.statusText)
                         }
                     } catch (e) {
+                        console.log(e);
                     }
                 };
+                request.open('GET', 'list.json');
                 request.send(null);
 //            })();
         </script>
