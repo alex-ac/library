@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+    <head>
+        <title>My Music Library</title>
+        <meta charset=utf8>
+        <link rel=stylesheet type=text/css href=style.css>
+    </head>
+    <body>
+        <header>
+            <h1>My music Library</h1>
+            <h6>by alex_ac</h6>
+            <a href=https://github.com/alex-ac>Follow me on GitHub</a>
+        </header>
+        <section class=general>
+            <h2>Why I do it?</h2>
+            <p>
+            Last time it's harder to find piano sheets for music that I like.
+            I want to put my favorite music here in the lilypond format to help
+            you find, play and modify great music. I don't want to pay $5 for short
+            file, that probably is not thing that I have searched. I think you 
+            don't too.
+            </p>
+
+            <h2>What can you find here?</h2>
+            <p>
+            For every music you can find lilypond source (on the github), output
+            in the pdf and midi file. You can freely change this files.
+            </p>
+
+            <h2>What's the license?</h2>
+            <p>
+            I want to make this library completely legal. If I publish something here
+            than it is in the public domain (under CC-like license) or I found owner
+            and got resolution from him.
+            </p>
+
+            <h2>Can you help me?</h2>
+            <p>
+            Yes, you can help me. You can:
+            <ul>
+                <li>Send to me intresting sheets (<a href=mailto:13alexac@gmail.com>13alexac@gmail.com</a>).</li>
+                <li>Edit lilypond source and send me pull requests.</li>
+                <li>Write issues on the issue tracker.</li>
+                <li>Ask a sheets from me to write lilypond source and add it to library.</li>
+            </ul>
+            You can donate me some money. Write me a mail if you want to do this. Also 
+            write to me if you want to help by the other way.
+            </p>
+
+            <h2>Technical</h2>
+            <p>
+            This library is published on the github pages service and all dynamics are
+            written on the javascript. Turn it on to view the library correctly. Also
+            you can explore <a href=https://github.com/alex-ac/library/>github repository</a>.
+            </p>
+        </section>
+        <section class=general>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th><th>Author</th><th>Name</th><th>Arranger</th>
+                    </tr>
+                </thead>
+                <tbody class=music-list>
+                </tbody>
+            </table>
+        </section>
+        <section class='item-page hide'>
+            <a href=# class=to-general>Back to list</a>
+            <h1 class=item-name></h1>
+            <h2 class=item-author></h2>
+            <h3 class=item-arranger></h3>
+            <a href=# class=download-midi>Download midi</a>
+            <a href=# class=download-pdf>Download_pdf</a>
+            <a href=# class=view-source>View source</a>
+            <a href=# class=view-pdf>View PDF online</a>
+            <p class=item-description></p>
+        </section>
+        <script>
+            (function() {
+                var list;
+                var music_list = document.getElementsByClassName('music-list')[0];
+                var request = new XMLHttpRequest();
+                var current_item;
+                function set_handlers(items, name, handler) {
+                    for (var i = 0; i < items.length; i++) {
+                        items[i][name] = handler;
+                    }
+                }
+
+                function download_midi() {
+                    document.location.href = current_item.midi;
+                }
+
+                function download_pdf() {
+                    document.location.href = current_item.pdf;
+                }
+
+                function view_source() {
+                    document.location.href = 'https://github.com/alex-ac/library/' + current_item.source;
+                }
+                
+                function view_pdf() {
+                    document.location.href = 'viewer.html?pdf=' + current_item.pdf;
+                }
+
+                set_handlers(document.getElementsByClassName('to-general'), open_general);
+                set_handlers(document.getElementsByClassName('download-midi'), download_midi);
+                set_handlers(document.getElementsByClassName('download-pdf'), download_pdf);
+                set_handlers(document.getElementsByClassName('view-source'), view_source);
+                set_handlers(document.getElementsByClassName('view-pdf'), view_pdf);
+
+                function hide_general() {
+                    var general = document.getElementsByClassName('general');
+                    for (var i = 0; i < general.length; i++) {
+                        general[i].classList.add('hide');
+                    }
+                }
+                function show_general() {
+                    var general = document.getElementsByClassName('general');
+                    for (var i = 0; i < general.length; i++) {
+                        general[i].classList.remove('hide');
+                    }
+                }
+
+                function hide_item() {
+                    var items = document.getElementsByClassName('item-page');
+                    for (var i = 0; i < items.length; i++) {
+                        items[i].classList.add('hide');
+                    }
+                }
+                function show_item() {
+                    var items = document.getElementsByClassName('item-page');
+                    for (var i = 0; i < items.length; i++) {
+                        items[i].classList.remove('hide');
+                    }
+                }
+
+                function set_all(items, text) {
+                    for (var i = 0; i < items.length; i++) {
+                        items[i].innerText = text;
+                    }
+                }
+
+                function open_item(e) {
+                    var item = list[e.target.dataset.id];
+
+                    hide_general();
+                    show_item();
+
+                    set_all(document.getElementsByClassName('item-name'), item.name);
+                    set_all(document.getElementsByClassName('item-author'), item.author);
+                    set_all(document.getElementsByclassName('item-arranger'), item.arranger);
+                    set_all(document.getElementsByClassName('item-description'), item.description);
+
+                    current_item = item;
+                }
+
+                function open_general() {
+                    hide_item();
+                    show_general();
+                }
+
+                request.open('GET', 'list.json');
+                request.onreadystatechange = function() {
+                    try {
+                        if (request.readyState == 4 && request.status = 200) {
+                            list = JSON.parse(request.responseText);
+                            for (var i = 0; i < list.length; i++) {
+                                var item = list[i];
+                                var row = document.createElement('tr');
+                                row.dataset.id = i;
+                                row.onclick = open_item;
+                                
+                                var num = document.createElement('td');
+                                num.classList.add('number');
+                                num.innerText = i + 1;
+                                row.appendChild(num);
+                                
+                                var author = document.createElement('td');
+                                author.classList.add('author');
+                                author.innerText = item.author ? item.author : 'Unknown';
+                                row.appendChild(author);
+                                
+                                var name = document.createElement('td');
+                                name.classList.add('name');
+                                name.innerText = item.name ? item.name : 'Unknown';
+                                row.appendChild(author);
+
+                                var name = document.createElement('td');
+                                name.classList.add('arranger');
+                                name.innerText = item.arranger ? item.arranger : 'Unknown';
+
+                                music_list.appendChild(row);
+                            }
+                        }
+                    } catch (e) {
+                    }
+                };
+                request.send(null);
+            })();
+        </script>
+    </body>
+</html>
+

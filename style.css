@@ -1,0 +1,25 @@
+body {
+    background: silver;
+}
+
+header, section {
+    background: white;
+    margin: 20px auto;
+    width: 960px;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px dotted black;
+}
+
+.hide {
+    display: none;
+}
+
+h1, h2, h3, h4, h5, th {
+    color: #cc0000;
+}
+
+a {
+    color: #cc0000;
+}
+
