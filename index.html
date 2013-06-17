@@ -163,7 +163,7 @@
                 }
 
                 request.onreadystatechange = function() {
-                    try {
+//                    try {
                         if (request.readyState == 4 && request.status = 200) {
                             list = JSON.parse(request.responseText);
                             for (var i = 0; i < list.length; i++) {
@@ -196,9 +196,9 @@
                         } else {
                             console.log(request.statusText)
                         }
-                    } catch (e) {
+/*                    } catch (e) {
                         console.log(e);
-                    }
+                    }*/
                 };
                 request.open('GET', 'list.json');
                 request.send(null);
