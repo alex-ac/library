@@ -64,6 +64,74 @@ upper = \relative c'' {
         cis4. cis8 a' g
     }}
     >> \oneVoice
+
+    <a, d>4(f' e8 f)
+    << {\voiceOne g2 a4}
+    \new Voice {
+        bes,2.
+    }
+    >> \oneVoice
+    <a d f>2 e'4
+    <a, d>2(<a d>4
+    <e g c>4. e8 g c
+    <g c e>4 f' e
+    <a, d>2 d4
+    <f, a d>2.)
+
+    \mark \markup {\musicglyph #"scripts.segno"}
+
+    << {\voiceOne 
+        a'4.(g8 a4
+        g2 d4
+        a'2) c4
+        g2.
+        a4.(g8 a4
+        g2.
+        f2)g4}
+    \new Voice {\voiceTwo \relative c'' {
+        <c f>2.\mf
+        b2 b4
+        <c f>2.
+        d
+        <c f>
+        b2 d8 e
+        c4. d
+    }}
+    >> \oneVoice
+    e2.
+
+    << {\voiceOne
+        a4.(g8 a4
+        g2 d4
+        a'2) c4
+        g2 g4
+        a4. g8 a4
+    }
+    \new Voice {\voiceTwo \relative c'' {
+        <c f>2.\mf
+        b2 b4
+        <c f>2.
+        d4 b c
+        <c f>2.
+    }}
+    >> \oneVoice
+    <d, g b>2\< g4
+    <cis, e a>2.~
+    <cis e a>2 <cis e a>4(\!
+
+    <f a d>4.)\f\< <f a c>8 <f bes d>4
+    <e c'>2 g4\!
+    <c, f a> <f a f'> <g c g'>
+    << {\voiceOne <f' a>4 a, c}
+    \new Voice {\voiceTwo a2.}
+    >> \oneVoice
+    <f bes d>2 e'8 d
+    <e, c'>2 <g bes>4
+    <c, a'>\> <a' a'> <a g'>
+    <a f'>2 a4\!
+
+    \bar "||"
+
 }
 
 lower = \relative c {
@@ -102,6 +170,42 @@ lower = \relative c {
     c,8 e g2
     f,8 c' f g a4
     a,8 e' a4 r
+
+    d,8 f a2
+    g8 b d2
+    d,8 f a4 g
+    d8 f a2
+    c,8 e g2
+    c,8 e g2
+    d8 f a2
+    d,,8(a' d e f a)
+
+    f,8(c' a' c, f c)
+    g(d' g b d d,)
+    f,(c' f c a' c,)
+    g(d' g b d)f
+    f,,8(c' a' c, f c)
+    g(d' g d g d)
+    bes(d f bes4 bes8
+    cis a e cis a e)
+
+    f(c' a' c, f)c
+    g(d' g b d d,)
+    f,(c' f c a' c,)
+    g(d' g d g d)
+    f,(c' f c a')c,
+    g(d' g d b' g)
+    a, cis e a cis e
+    a e cis a e cis
+
+    bes f'(d' f, d' bes)
+    c,(g' c g bes g)
+    f,(c' f c g' c,
+    a') c, f,(c' f c
+    bes f' d' f, c' bes)
+    c,(g' c e g c)
+    f,,(c' a' c, g' c,
+    f c) a c f c
 }
 
 content = \context GrandStaff <<
