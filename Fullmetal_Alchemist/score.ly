@@ -193,6 +193,51 @@ upper = \relative c'' {
     g2 c4
     a2 g4
     <cis, a'>2.
+
+    d4 f e8 f
+    g2 a4
+    f2 e4
+    d2\< d4
+    c4. c8 d4
+    e4. f8 e4
+    \ottava #0
+    <a, d>2 <a d>4
+    <d, a' d>2.\!
+    \mark \markup {\musicglyph #"scripts.segno" \musicglyph #"scripts.coda"}
+    \bar "||"
+
+    << {\voiceOne \relative c''' {
+        d2.~\p
+        d~
+        d4 a' g
+        f e c
+        a2.~
+        a2.~
+        a4 a' g
+        f e c
+        d2.~
+        d2 g4
+    }}
+    \new Voice {\voiceTwo \relative c'' {
+        <f a>2.~
+        <f a>~
+        <f a>
+        <f a>
+        <d f>~
+        <d f>~
+        <d f>
+        <f a>
+        g~
+        g
+    }}
+    >> \oneVoice
+    \ottava #1
+    <a c e>_\markup {\bold \italic {rit.}}
+    <a e' c'>
+    <d a' d>~\pp
+    <d a' d>\fermata
+
+    \bar "|."
 }
 
 lower = \relative c {
@@ -305,6 +350,29 @@ lower = \relative c {
     c4 <e g>2
     f,4 <a c>2
     a4 <cis e g>2
+
+    d2.
+    g4 <b d>2
+    d,4 <f a>2
+    d4 <f a>2
+    c4 <e g>2
+    c,4 <e g>2
+    d,8 f a d f a
+    d a f d a f
+
+    d'8 a' d2
+    c,8 g' c2
+    bes,8 f' bes2
+    a,8 e' a2
+    d,8 a' d2
+    c, g' c2
+    bes,8 f' bes2
+    a,8 e' a2
+    g,8 d' g2
+    g,8 d' g2
+    a,8 e' a2
+    d,,8 a' d f a d
+    <a d>2.
 }
 
 content = \context GrandStaff <<
