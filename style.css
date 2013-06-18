@@ -23,3 +23,20 @@ a {
     color: #cc0000;
 }
 
+table, tr {
+    width: 100%
+}
+
+tr {
+    padding: 5px;
+}
+
+th {
+    border-bottom: 1px solid black;
+}
+
+tr:hover {
+    background: silver;
+    border: 1px dotted black;
+    border-radius: 3px;
+}

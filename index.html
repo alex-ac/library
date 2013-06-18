@@ -12,7 +12,7 @@
             <a href=https://github.com/alex-ac>Follow me on GitHub</a>
         </header>
         <section class=general>
-            <h2>Why do I it?</h2>a
+            <h2>Why do I it?</h2>
             <p>
             Nowadays it's getting harder to find piano sheets for music which I like.
             I want to put my favorite music here in the lilypond format to help
@@ -69,47 +69,45 @@
         <section class='item-page hide'>
             <a href=# class=to-general>Back to list</a>
             <h1 class=item-name></h1>
-            <h2 class=item-author></h2>
-            <h3 class=item-arranger></h3>
-            <a href=# class=download-midi>Download midi</a>
-            <a href=# class=download-pdf>Download_pdf</a>
-            <a href=# class=view-source>View source</a>
-            <a href=# class=view-pdf>View PDF online</a>
-            <p class=item-description></p>
+            <b>Author:</b> <span class=item-author></span><br>
+            <b>Arranger:</b> <span class=item-arranger></span><br>
+            <p class=item-note></p>
+            <ul>
+                <li><a href=# class=download-midi>Download midi</a></li>
+                <li><a href=# class=download-pdf>Download pdf</a></li>
+                <li><a href=# class=view-source>View source</a></li>
+                <li><a href=# class=view-pdf>View PDF online</a></li>
+            </ul>
+            <div class=item-description></div>
         </section>
         <script>
- //           (function() {
+            (function() {
                 var list;
                 var music_list = document.getElementsByClassName('music-list')[0];
                 var request = new XMLHttpRequest();
                 var current_item;
-                function set_handlers(items, name, handler) {
+
+                function set_handlers(items, handler) {
                     for (var i = 0; i < items.length; i++) {
-                        items[i][name] = handler;
+                        items[i].onclick = handler;
                     }
                 }
 
                 function download_midi() {
-                    document.location.href = current_item.midi;
+                    document.location.href = 'http://alex-ac.github.io/library/' + current_item.midi;
                 }
 
                 function download_pdf() {
-                    document.location.href = current_item.pdf;
+                    document.location.href = 'http://alex-ac.github.io/library/' + current_item.pdf;
                 }
 
                 function view_source() {
-                    document.location.href = 'https://github.com/alex-ac/library/' + current_item.source;
+                    document.location.href = 'https://github.com/alex-ac/library/tree/master/' + current_item.source;
                 }
                 
                 function view_pdf() {
-                    document.location.href = 'viewer.html?pdf=' + current_item.pdf;
+                    document.location.href = 'http://alex-ac.github.io/library/viewer.html?' + current_item.pdf;
                 }
-
-                set_handlers(document.getElementsByClassName('to-general'), open_general);
-                set_handlers(document.getElementsByClassName('download-midi'), download_midi);
-                set_handlers(document.getElementsByClassName('download-pdf'), download_pdf);
-                set_handlers(document.getElementsByClassName('view-source'), view_source);
-                set_handlers(document.getElementsByClassName('view-pdf'), view_pdf);
 
                 function hide_general() {
                     var general = document.getElementsByClassName('general');
@@ -136,10 +134,21 @@
                         items[i].classList.remove('hide');
                     }
                 }
+                    
+                function open_general() {
+                    hide_item();
+                    show_general();
+                }
+                
+                set_handlers(document.getElementsByClassName('to-general'), open_general);
+                set_handlers(document.getElementsByClassName('download-midi'), download_midi);
+                set_handlers(document.getElementsByClassName('download-pdf'), download_pdf);
+                set_handlers(document.getElementsByClassName('view-source'), view_source);
+                set_handlers(document.getElementsByClassName('view-pdf'), view_pdf);
 
                 function set_all(items, text) {
                     for (var i = 0; i < items.length; i++) {
-                        items[i].innerText = text;
+                        items[i].innerHTML = text;
                     }
                 }
 
@@ -149,22 +158,18 @@
                     hide_general();
                     show_item();
 
-                    set_all(document.getElementsByClassName('item-name'), item.name);
-                    set_all(document.getElementsByClassName('item-author'), item.author);
-                    set_all(document.getElementsByclassName('item-arranger'), item.arranger);
-                    set_all(document.getElementsByClassName('item-description'), item.description);
+                    set_all(document.getElementsByClassName('item-name'), item.name || 'Unknown');
+                    set_all(document.getElementsByClassName('item-author'), item.author || 'Unknown');
+                    set_all(document.getElementsByClassName('item-arranger'), item.arranger || 'Unknown');
+                    set_all(document.getElementsByClassName('item-description'), item.description || '');
+                    set_all(document.getElementsByClassName('item-note'), item.note || '');
 
                     current_item = item;
                 }
 
-                function open_general() {
-                    hide_item();
-                    show_general();
-                }
-
                 request.onreadystatechange = function() {
-//                    try {
-                        if (request.readyState == 4 && request.status = 200) {
+                    try {
+                        if (request.readyState == 4 && request.status == 200) {
                             list = JSON.parse(request.responseText);
                             for (var i = 0; i < list.length; i++) {
                                 var item = list[i];
@@ -175,34 +180,37 @@
                                 var num = document.createElement('td');
                                 num.classList.add('number');
                                 num.innerText = i + 1;
+                                num.dataset.id = i;
                                 row.appendChild(num);
                                 
                                 var author = document.createElement('td');
                                 author.classList.add('author');
-                                author.innerText = item.author ? item.author : 'Unknown';
+                                author.innerText = item.author || 'Unknown';
+                                author.dataset.id = i;
                                 row.appendChild(author);
                                 
                                 var name = document.createElement('td');
                                 name.classList.add('name');
-                                name.innerText = item.name ? item.name : 'Unknown';
-                                row.appendChild(author);
+                                name.innerText = item.name || 'Unknown';
+                                name.dataset.id = i;
+                                row.appendChild(name);
 
-                                var name = document.createElement('td');
-                                name.classList.add('arranger');
-                                name.innerText = item.arranger ? item.arranger : 'Unknown';
+                                var arranger = document.createElement('td');
+                                arranger.classList.add('arranger');
+                                arranger.innerText = item.arranger || 'Unknown';
+                                arranger.dataset.id = i;
+                                row.appendChild(arranger);
 
                                 music_list.appendChild(row);
                             }
-                        } else {
-                            console.log(request.statusText)
                         }
-/*                    } catch (e) {
+                    } catch (e) {
                         console.log(e);
-                    }*/
+                    }
                 };
                 request.open('GET', 'list.json');
                 request.send(null);
-//            })();
+            })();
         </script>
     </body>
 </html>
