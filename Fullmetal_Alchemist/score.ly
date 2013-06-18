@@ -119,6 +119,8 @@ upper = \relative c'' {
     <cis, e a>2.~
     <cis e a>2 <cis e a>4(\!
 
+    \bar "||"
+
     <f a d>4.)\f\< <f a c>8 <f bes d>4
     <e c'>2 g4\!
     <c, f a> <f a f'> <g c g'>
@@ -130,8 +132,67 @@ upper = \relative c'' {
     <c, a'>\> <a' a'> <a g'>
     <a f'>2 a4\!
 
-    \bar "||"
+    <bes, g'>4.(\p bes8 a' g
+    <a, d f>2) e'4
+    <f, bes d>4. f8 bes d
+    <f, bes d>4\< <g c e> <a d f>\!
+    <bes d g>4.\p bes8 a' g
+    << {\voiceOne f2 e4}
+    \new Voice {\voiceTwo cis2.}
+    >> \oneVoice
+    <f, a d>2.~
+    <f a d>
+    
+    \mark \markup {\musicglyph #"scripts.coda"}
 
+    <d' f a>
+    << {\voiceOne \relative c''' {
+        b4. a8 g4
+        f g a
+        e e'8 c g e
+        d4 a'2
+        b4. a8 g4
+    }}
+    \new Voice { \voiceTwo \relative c''{
+        <d g>2.
+        <a d>
+        <g c>
+        f
+        <b d>
+    }}
+    >> \oneVoice
+    <a d f>~
+    <a d f>
+
+    << {\voiceOne \relative c''' {
+        f4(e d)
+        e2 c4
+        a2.~
+        a4 d e
+        f e f
+    }}
+    \new Voice { \voiceTwo \relative c''' {
+        <a d>2.
+        g
+        <d f>2.~
+        <d f>
+        <a' d>
+    }}
+    >> \oneVoice
+    <g c e g>2 e'4
+    <f, a d>2.~
+    <f a d>
+
+    \ottava #1
+
+    d''4\pp f e8 f
+    g2 a4
+    f2 e4
+    d2.
+    d4 f e8 f
+    g2 c4
+    a2 g4
+    <cis, a'>2.
 }
 
 lower = \relative c {
@@ -206,6 +267,44 @@ lower = \relative c {
     c,(g' c e g c)
     f,,(c' a' c, g' c,
     f c) a c f c
+
+    g d' g2
+    a,,8 e' a2
+    bes,8(f' bes2
+    bes,8 bes' c, c' d, d')
+    g, d' g2
+    g,,8 a' cis e r4
+    d,8(a' d f a d)
+    f(d a f d a)
+
+    d,(a' d f a4)
+    g,8(d' g a b4)
+    d,,8(a' b e f4)
+    c,8 g'(c e g c)
+    d,, a' d e f4
+    g,,8 d'(g a b g)
+    d f a d f a
+    d a f d a f
+    
+    \clef treble
+
+    d' a'(d f a d)
+    c,, g'(c d e4)
+    d,8 f( a d f a
+    d, f a f d a)
+    d, a'(d f a4)
+    c,,8(g' c e g4)
+    d,8(e f a d a
+    f e d a f e)
+
+    d''2.
+    g
+    d
+    d4 <f a>2
+    d2.
+    c4 <e g>2
+    f,4 <a c>2
+    a4 <cis e g>2
 }
 
 content = \context GrandStaff <<
