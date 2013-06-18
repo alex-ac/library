@@ -173,35 +173,37 @@
                             list = JSON.parse(request.responseText);
                             for (var i = 0; i < list.length; i++) {
                                 var item = list[i];
-                                var row = document.createElement('tr');
-                                row.dataset.id = i;
-                                row.onclick = open_item;
-                                
-                                var num = document.createElement('td');
-                                num.classList.add('number');
-                                num.innerText = i + 1;
-                                num.dataset.id = i;
-                                row.appendChild(num);
-                                
-                                var author = document.createElement('td');
-                                author.classList.add('author');
-                                author.innerText = item.author || 'Unknown';
-                                author.dataset.id = i;
-                                row.appendChild(author);
-                                
-                                var name = document.createElement('td');
-                                name.classList.add('name');
-                                name.innerText = item.name || 'Unknown';
-                                name.dataset.id = i;
-                                row.appendChild(name);
+                                if (!item.hide) {
+                                    var row = document.createElement('tr');
+                                    row.dataset.id = i;
+                                    row.onclick = open_item;
+                                    
+                                    var num = document.createElement('td');
+                                    num.classList.add('number');
+                                    num.innerText = i + 1;
+                                    num.dataset.id = i;
+                                    row.appendChild(num);
+                                    
+                                    var author = document.createElement('td');
+                                    author.classList.add('author');
+                                    author.innerText = item.author || 'Unknown';
+                                    author.dataset.id = i;
+                                    row.appendChild(author);
+                                    
+                                    var name = document.createElement('td');
+                                    name.classList.add('name');
+                                    name.innerText = item.name || 'Unknown';
+                                    name.dataset.id = i;
+                                    row.appendChild(name);
 
-                                var arranger = document.createElement('td');
-                                arranger.classList.add('arranger');
-                                arranger.innerText = item.arranger || 'Unknown';
-                                arranger.dataset.id = i;
-                                row.appendChild(arranger);
+                                    var arranger = document.createElement('td');
+                                    arranger.classList.add('arranger');
+                                    arranger.innerText = item.arranger || 'Unknown';
+                                    arranger.dataset.id = i;
+                                    row.appendChild(arranger);
 
-                                music_list.appendChild(row);
+                                    music_list.appendChild(row);
+                                }
                             }
                         }
                     } catch (e) {

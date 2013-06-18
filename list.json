@@ -24,5 +24,15 @@
         "midi": "Summertime/Summertime.midi",
         "pdf": "Summertime/Summertime.pdf",
         "source": "Summertime/"
+    },
+    {
+        "name": "Fullmetal Alchemist, Brothers theme",
+        "author": "Michiru Oshima",
+        "arranger": "Sebastian Wolff & Marco Bossow",
+        "description": "Theme of the brothers from the anime &laquo;Fullmetal Alchemist&raquo;.",
+        "midi": "Fullmetal_Alchemist/Fullmetal_Alchemist.midi",
+        "pdf": "Fullmetal_Alchemist/Fullmetal_Alchemist.pdf",
+        "source": "Fullmetal_Alchemist/",
+        "hide": true
     }
 ]
