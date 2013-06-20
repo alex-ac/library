@@ -32,7 +32,6 @@
         "description": "Theme of the brothers from the anime &laquo;Fullmetal Alchemist&raquo;.",
         "midi": "Fullmetal_Alchemist/Fullmetal_Alchemist.midi",
         "pdf": "Fullmetal_Alchemist/Fullmetal_Alchemist.pdf",
-        "source": "Fullmetal_Alchemist/",
-        "hide": true
+        "source": "Fullmetal_Alchemist/"
     }
 ]
