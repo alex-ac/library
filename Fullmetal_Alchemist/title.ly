@@ -5,7 +5,7 @@
     subtitle = "Fullmetal Alchemist"
     instrumest = "Piano"
     composer = "Michiru Oshima"
-    arranger = "Sebastian Wolff & Marco Bossow"
+    arranger = "Marco Bossow"
     tagline = ##f
 }
 
